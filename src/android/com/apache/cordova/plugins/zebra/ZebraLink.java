@@ -485,18 +485,7 @@ public class ZebraLink extends CordovaPlugin {
 
 			//	printerIsConnectedAndReady();
 
-			JSONObject argDict = arguments.getJSONObject(0);
-			template = argDict.getString("template");
-			values = argDict.getJSONObject("formValues");
-
-			for(Iterator<String> it = values.keys(); it.hasNext();)
-			{
-				String k = it.next();
-				String value = values.getString(k);
-				String token = "@"+k+"@";
-				template = template.replaceAll(token,value);
-			}
-			template = template.replaceAll("\n", "\r\n").replaceAll("\r\r","\r");
+			template = arguments.getString(0);
 
 			synchronized(ZebraLink.lock)
 			{

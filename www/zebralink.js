@@ -109,15 +109,7 @@ cordova.define("cordova/plugins/zebralink",
 		}
 
 			
-		if(platform()!=='droid')
-		{
-			alert('Print: ' + JSON.stringify(options));
-			setTimeout(success,400);
-		}
-		else
-		{
-			return exec(success, fail, classname, "print", [options]);
-		}
+		return exec(success, fail, classname, "print", [options]);
 	};
 
 
@@ -189,23 +181,7 @@ cordova.define("cordova/plugins/zebralink",
 			success = function() { setTimeout(function(){alert("Printer is ready.");},1); };
 		}
 			
-		if(platform()!=='droid')
-		{
-			if(confirm("Check: Printer is OK?")){
-				setTimeout(function(){
-					success();
-				},1000);
-			}
-			else{
-				setTimeout(function(){
-					fail('printer connection failed.');
-				},1000);
-			}
-		}
-		else
-		{
-			return exec(success,fail,classname, "check", []);
-		}
+		return exec(success,fail,classname, "check", []);
 	};
 
 	var zebraLink = new ZebraLink();
